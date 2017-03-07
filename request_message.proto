@@ -1,0 +1,22 @@
+syntax = "proto2";
+option java_outer_classname="RequestMessageProtos";
+
+message Clock{
+	required int32 timer = 1;
+	required int32 pid = 2;
+}
+
+message VectorClock{
+	repeated Clock vector_clock = 1;
+	required int32 rpid =2;
+}
+
+message Acknowledgement{
+	//#actually sending ok
+	optional bool ok = 1;
+	//#just for the sake of sending
+	optional bool queued_ok = 2;
+	required VectorClock sender_clock = 3;
+
+}
+
